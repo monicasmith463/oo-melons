@@ -2,20 +2,15 @@
 
 
 class AbstactOrder(object):
-
-    #def init
-
-    #get total
-
-    #mark shipped
+    """Creates abstract melon order with species and quantity attributes."""
 
 
     def __init__(self, species, qty):
-            """Initialize melon order attributes."""
+        """Initialize melon order attributes."""
 
-            self.species = species
-            self.qty = qty
-            self.shipped = False
+        self.species = species
+        self.qty = qty
+        self.shipped = False
 
 
     def get_total(self):
@@ -42,18 +37,23 @@ class DomesticMelonOrder(AbstactOrder):
     order_type = "domestic"
     tax = 0.08
 
+    def __init__(self, species, qty, country_code):
+        """Initialize melon order attributes."""
+
+        super(InternationalMelonOrder, self).__init__(species, qty)
     
+
 
 class InternationalMelonOrder(AbstactOrder):
     """An international (non-US) melon order."""
+    order_type = "international"
+    tax = 0.17
 
     def __init__(self, species, qty, country_code):
         """Initialize melon order attributes."""
 
         super(InternationalMelonOrder, self).__init__(species, qty)
         self.country_code = country_code
-        self.order_type = "international"
-        self.tax = 0.17
 
 
     def get_country_code(self):
